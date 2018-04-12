@@ -1,10 +1,10 @@
 #include <cmath>
 template <typename T>
-void swap(T* a, T* b)
+void swap(T* A, int index_a, int index_b)
 {
-	T temp = a;
-	b = a;
-	a = temp;
+	T temp = A[index_a];
+	A[index_a] = A[index_b];
+	A[index_b] = temp;
 };
 
 template <typename T>
@@ -18,9 +18,7 @@ void Max_Heapify(T* A, int index, int size) {
 	if((right <= size) && (A[right] > A[maxIndex]))
 		maxIndex = right;
 	if(maxIndex != index) {
-		T tmp = A[index];
-		A[index] = A[maxIndex];
-		A[maxIndex] = tmp;
+		swap(A, index, maxIndex);
 		Max_Heapify(A, maxIndex, size);
 	}
 };
@@ -34,5 +32,9 @@ void BuildHeap(T* A, int size){
 
 template <typename T>
 void HeapSort(T* A, int size) {
-	//Implement later
+	BuildHeap(A, size);
+	for(int i = (size-1); i >= 1; i--) {
+		swap(A, 0, i);
+		Max_Heapify(A, 0, i-1);
+	}
 };
