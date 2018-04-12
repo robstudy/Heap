@@ -9,8 +9,8 @@ void swap(T* a, T* b)
 
 template <typename T>
 void Max_Heapify(T* A, int index, int size) {
-	int left = 2 * index;
-	int right = 2 * index + 1;
+	int left = 2 * index + 1;
+	int right = 2 * index + 2;
 	int maxIndex = index;
 	
 	if ((left <= size) && (A[left] > A[index]))
